@@ -14,13 +14,6 @@ import { Navbar } from './components/Navbar'
 
 export const App = () => {
 
-  // const { signIn } = createContext( AuthContext )
-  const { signIn, currentUser, logOut } = useAuth()
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    signIn();
-  }
 
   return (
     <React.Fragment>
@@ -29,6 +22,7 @@ export const App = () => {
       </header>
       
       <main className='container'>
+        
 
       <Routes>
         <Route exact path='/' element={<Home />} />

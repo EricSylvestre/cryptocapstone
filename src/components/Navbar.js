@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AuthContext, useAuth } from '../contexts/AuthProvider'
+import { useAuth } from '../contexts/AuthProvider'
 import { DataContext } from '../contexts/DataProvider'
 
 
@@ -32,7 +32,7 @@ const {signIn, logOut} = useAuth()
                       !currentUser.loggedIn
                           ?
                   <li className="nav-item">
-                      <Link onClick={ () => signIn() }  to="." className="nav-link">Login</Link>
+                      <Link onClick={ () => signIn() }  to="/" className="nav-link">Login</Link>
                   </li>
                           :
                   <li className="nav-item">

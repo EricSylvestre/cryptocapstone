@@ -1,9 +1,16 @@
-import { render } from '@testing-library/react'
-import React from 'react'
 
+import React from 'react'
+import { useState, useEffect } from 'react';
 
 export const Chart = () => 
 {
+    const [coins, setCoins] = useState([]);
+    const [search, setSearch] = useState('')
+    
+
+    const filteredCoins = coins.filter(coin =>
+        coin.name.toLowerCase().includes(search.toLocaleLowerCase())
+    )
     const Coin = ({ name, image, symbol, price, volume, priceChange, marketcap, rank }) => {
 
     
@@ -34,8 +41,8 @@ export const Chart = () =>
                 </div>
             </div>
 
-                {/* {filteredCoins.map(coin => {
-                        return <Chart
+                {filteredCoins.map(coin => {
+                        return <Coin
                             rank={coin.market_cap_rank}
                             key={coin.id}
                             name={coin.name}
@@ -48,7 +55,7 @@ export const Chart = () =>
 
 
                         />;
-                    })} */}
+                    })}
 
             </React.Fragment>
         )
