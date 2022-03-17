@@ -123,7 +123,6 @@
 }
 
 .watchlist {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 42px;
   text-decoration: underline;
 }
@@ -154,3 +153,6 @@
   font-size: 20px;
 }
 
+.search {
+  text-decoration: underline;
+}

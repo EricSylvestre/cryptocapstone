@@ -38,7 +38,7 @@ export const Profile = () => {
 
             <hr />
 
-            <h1 className='watchlist'>Watchlist</h1>
+            <p className='watchlist'>Watchlist</p>
            
 
             <form action="" onSubmit={(e) => handleSubmit(e)}>

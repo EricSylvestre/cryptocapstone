@@ -9,9 +9,6 @@ import { useAuth } from './contexts/AuthProvider'
 import { Navbar } from './components/Navbar'
 
 
-
-
-
 export const App = () => {
 
 
@@ -21,7 +18,7 @@ export const App = () => {
         <Navbar />
       </header>
       
-      <main className='container'>
+      <main>
         
 
       <Routes>
