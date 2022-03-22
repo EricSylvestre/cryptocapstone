@@ -1,53 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-
+import React, {useContext} from 'react';
+import { useAuth } from '../contexts/AuthProvider'
+import { DataContext } from '../contexts/DataProvider'
+import { addDoc, collection, getFirestore, arrayUnion } from 'firebase/firestore'
 
 
 
 export const Coin = ({ name, image, symbol, price, volume, priceChange, marketcap, rank }) => {
 
+    const { currentUser } = useAuth()
+    const db = getFirestore()
+    const { watchlist, addCoin } = useContext(DataContext)
 
-    useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false')
-            .then(res => {
-                setCoins(res.data);
-            })
-            .catch(error => console.log(error));
-    }, []);
+    function addWatchlist (e) {
+        alert(e.name + ' has been added')
 
+        let formData = {
+            watchlist: e.name
+        }
 
-    const [coins, setCoins] = useState([]);
-    const [search, setSearch] = useState('')
+        addCoin(formData)
+    }
 
-    
-
-    const filteredCoins = coins.filter(coin =>
-        coin.name.toLowerCase().includes(search.toLocaleLowerCase())
-    )
-
+   
         return (
 
             <React.Fragment>
                 
-                {filteredCoins.map(coin => {
-                    return <Coin
-                        rank={coin.market_cap_rank}
-                        key={coin.id}
-                        name={coin.name}
-                        image={coin.image}
-                        symbol={coin.symbol}
-                        price={coin.current_price}
-                        marketcap={coin.market_cap}
-                        priceChange={coin.price_change_percentage_24h}
-                        volume={coin.total_volume}
-
-
-                    />;
-                })}
-                
-
-
                 <div className='coin-container'>
                     <div className='coin-row'>
                         <div className='coin'>
@@ -67,8 +45,12 @@ export const Coin = ({ name, image, symbol, price, volume, priceChange, marketca
                             <p className='coin-marketcap'>
                                 Mkt Cap: ${marketcap}
                             </p>
-
-                            <button className='add'>Add to Profile</button>
+                            {
+                             currentUser.loggedIn
+                                ?
+                                    <button onClick={() => addWatchlist({name})} className='add'>Add to Profile</button>
+                            : false
+                            } 
                         </div>
                     </div>
 

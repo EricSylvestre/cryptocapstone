@@ -1,21 +1,40 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../contexts/DataProvider'
-import { addDoc, collection, getFirestore, serverTimestamp } from 'firebase/firestore'
+import { addDoc, collection, getFirestore, getDocs, doc, getDoc, query, where, collectionGroup} from 'firebase/firestore'
 import { useAuth } from '../contexts/AuthProvider'
+import { WatchList } from '../components/WatchList'
+
+import { onSnapshot} from "@firebase/firestore";
+import { firebaseApp} from '../firebase/config';
+
+
+
 
 export const Profile = () => {
-    // console.log('first thing')
     const { currentUser } = useAuth()
-    const { posts, addPost } = useContext(DataContext)
-    const [filteredPosts, setfilteredPosts] = useState([])
+    const { watchlist, addWatchlist } = useContext(DataContext)
+    const [filteredWatchlist, setfilteredWatchlist] = useState([])
     const db = getFirestore()
+    
+    
+    
+    const getWatchList = async () => {
+        const querySnapshot = await getDocs(collection(db, "users/"+currentUser.id+"/watchlist"));
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log((doc.data().watchlist));
+            
 
-    // console.log( currentUser )
+        })
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-  
+
     }
+    
+   
     return (
         <React.Fragment>
 
@@ -33,12 +52,21 @@ export const Profile = () => {
             <div>
                 <p className='name'>Name : {currentUser.name}</p>
                 <p className='email'>Email : {currentUser.email}</p>
+                <p className='display'>Display Name : {currentUser.displayName}</p>
                
             </div>
 
             <hr />
 
             <p className='watchlist'>Watchlist</p>
+            <WatchList />
+            
+            
+            
+            <button onClick={getWatchList}>Click me</button>
+
+            
+         
            
 
             <form action="" onSubmit={(e) => handleSubmit(e)}>

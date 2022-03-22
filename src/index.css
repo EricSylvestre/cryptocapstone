@@ -98,7 +98,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .coin-text {
@@ -153,6 +154,11 @@
   font-size: 20px;
 }
 
-.search {
+
+.top {
+  text-align: center;
+  margin-bottom: 20px;
+  top: -30px;
+  position: relative;
   text-decoration: underline;
 }
