@@ -1,8 +1,5 @@
 import React from 'react'
 import { Home } from './views/Home'
-import { Login } from './views/Login'
-import { MessagingInbox } from './views/MessagingInbox'
-import { MessagingSent } from './views/MessagingSent'
 import { Profile } from './views/Profile'
 import { Route, Routes, Link } from 'react-router-dom'
 import { useAuth } from './contexts/AuthProvider'
@@ -20,12 +17,8 @@ export const App = () => {
       
       <main>
         
-
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/inbox' element={<MessagingInbox />} />
-        <Route exact path='/sent' element={<MessagingSent />} />
         <Route exact path='/profile' element={<Profile />} />
       </Routes>
 

@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { useAuth } from '../contexts/AuthProvider'
 import { DataContext } from '../contexts/DataProvider'
-import { addDoc, collection, getFirestore, arrayUnion } from 'firebase/firestore'
+import { getFirestore} from 'firebase/firestore'
 
 
 
@@ -9,19 +9,19 @@ export const Coin = ({ name, image, symbol, price, volume, priceChange, marketca
 
     const { currentUser } = useAuth()
     const db = getFirestore()
-    const { watchlist, addCoin } = useContext(DataContext)
+    const { addCoin } = useContext(DataContext)
 
     function addWatchlist (e) {
         alert(e.name + ' has been added')
 
         let formData = {
             watchlist: e.name
+            
         }
 
         addCoin(formData)
     }
 
-   
         return (
 
             <React.Fragment>
@@ -35,15 +35,16 @@ export const Coin = ({ name, image, symbol, price, volume, priceChange, marketca
                             <p className='coin-symbol'>{symbol}</p>
                         </div>
                         <div className='coin-data'>
-                            <p className='coin-price'>${price}</p>
-                            <p className='coin-high'>${volume}</p>
+                            <p className='coin-price'>${price.toLocaleString()}</p>
                             {priceChange < 0 ? (
-                                <p className='coin-percent red'>{priceChange}%</p>
-                            ) : (<p className='coin-percent green'>{priceChange}%</p>)
+                                <p className='coin-percent red'>{priceChange.toLocaleString()}%</p>
+                            ) : (<p className='coin-percent green'>{priceChange.toLocaleString()}%</p>)
 
                             }
+                            <p className='coin-high'>${volume.toLocaleString()}</p>
+                            
                             <p className='coin-marketcap'>
-                                Mkt Cap: ${marketcap}
+                                Mkt Cap: ${marketcap.toLocaleString()}
                             </p>
                             {
                              currentUser.loggedIn

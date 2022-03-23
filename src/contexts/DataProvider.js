@@ -1,10 +1,6 @@
-import axios from "axios";
-import { createContext, useEffect, useState, useContext, useCallback} from "react";
-import { firebaseApp } from '../firebase/config'
-import { getDocs, getDoc, getFirestore, query, collectionGroup, collection, addDoc, orderBy, doc, updateDoc, setDoc } from "firebase/firestore"; 
+import { createContext, useState} from "react";
+import { getDoc, getFirestore, collection, addDoc} from "firebase/firestore"; 
 import { useAuth } from "./AuthProvider";
-
-
 
 export const DataContext = createContext()
 
@@ -13,43 +9,9 @@ export const DataProvider = (props) => {
     const [coins, setCoins] = useState([]);
     const [search, setSearch] = useState('')
     const { currentUser } = useAuth()
-    const [watchlist, setWatchlist] = useState([])
+    
 
     const db = getFirestore()
-
-    const getCoins = useCallback(
-        async () => {
-        
-
-            // When making custom Firebase index queries, create your own custom one here: https://console.firebase.google.com/project/reactbook-jan-derek/firestore/indexes/single-field/manage
-            // CUSTOM INDEX QUERY DOCUMENTATION: https://firebase.google.com/docs/firestore/query-data/indexing?authuser=0&hl=en
-            const q = query(
-                collectionGroup(db, 'watchlist'),
-               
-            )
-
-            const querySnapshot = await getDocs(q)
-
-            let newCoins = [];
-            querySnapshot.forEach(async doc => {
-                const userRef = await getDoc(doc.ref.parent.parent);
-            
-
-                newCoins.push({
-                    id: doc.id,
-                    ...doc.data(),
-                    user: {
-                        id: userRef.id,
-                        ...userRef.data()
-                    }
-                })
-                setCoins(coins.concat(newCoins))
-            })
-
-            return querySnapshot;
-        },
-        [db],
-    )
 
 
     const addCoin = async (formData) => {
@@ -80,9 +42,7 @@ export const DataProvider = (props) => {
     }
 
 
-    useEffect(() => {
-        getCoins()
-    }, [getCoins])
+    
     
 
     const values = {

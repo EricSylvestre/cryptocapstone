@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { DataContext } from '../contexts/DataProvider'
-import { addDoc, collection, getFirestore, getDocs, doc, getDoc, query, where, collectionGroup } from 'firebase/firestore'
+import React from 'react'
+
+import { collection, getFirestore, getDocs } from 'firebase/firestore'
 import { useAuth } from '../contexts/AuthProvider'
 
 
-
-export const WatchList = ({cryptos}) => {
-
+export const WatchList = () => {
     var cryptos = []
 
     const db = getFirestore()
@@ -15,16 +13,33 @@ export const WatchList = ({cryptos}) => {
         const querySnapshot = await getDocs(collection(db, "users/" + currentUser.id + "/watchlist"));
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            cryptos.append((doc.data().watchlist));
+            cryptos.push((doc.data().watchlist));
+            console.log(doc.data)
 
 
         })
     };
 
-  return (
-      <React.Fragment>
-       <div>{cryptos}</div>  
-      </React.Fragment> 
-      
-  )
+
+    return (
+        <div>
+            {cryptos.map(() => {
+                const list = (
+                    <>
+                        <ul>
+                            <li>Id: {cryptos}</li>
+                        </ul>
+                        <hr />
+                    </>
+                );
+                return list;
+            })}
+        </div>
+    );
 }
+
+
+
+
+ 
+

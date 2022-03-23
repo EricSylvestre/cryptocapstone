@@ -1,73 +1,64 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../contexts/DataProvider'
-import { addDoc, collection, getFirestore, getDocs, doc, getDoc, query, where, collectionGroup} from 'firebase/firestore'
+import {  collection, getFirestore, getDocs} from 'firebase/firestore'
 import { useAuth } from '../contexts/AuthProvider'
-import { WatchList } from '../components/WatchList'
-
-import { onSnapshot} from "@firebase/firestore";
 import { firebaseApp} from '../firebase/config';
-
-
 
 
 export const Profile = () => {
     const { currentUser } = useAuth()
-    const { watchlist, addWatchlist } = useContext(DataContext)
-    const [filteredWatchlist, setfilteredWatchlist] = useState([])
     const db = getFirestore()
+
+
     
-    
-    
+    var cryptos = []
     const getWatchList = async () => {
+       
         const querySnapshot = await getDocs(collection(db, "users/"+currentUser.id+"/watchlist"));
         querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
+        
             console.log((doc.data().watchlist));
+            var info = doc.data().watchlist; 
+            cryptos.push(info); 
             
-
         })
+        console.log(cryptos)
+             
     };
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+
     }
-    
-   
+
     return (
         <React.Fragment>
-
+        
             <div className="row">
                 <div className="col-2 offset-5">
                     <img className='img-fluid' src={currentUser.image} alt={currentUser.name} />
                     
                 </div>
             </div>
-
             <div>
                 <p className='info'>My Info</p>
             </div>
-
             <div>
                 <p className='name'>Name : {currentUser.name}</p>
-                <p className='email'>Email : {currentUser.email}</p>
-                <p className='display'>Display Name : {currentUser.displayName}</p>
-               
+                <p className='email'>Email : {currentUser.email}</p> 
             </div>
-
             <hr />
 
             <p className='watchlist'>Watchlist</p>
-            <WatchList />
-            
-            
-            
-            <button onClick={getWatchList}>Click me</button>
 
-            
-         
-           
+            {/* <p id='arrPrint'></p>
+            <script>
+                {document.getElementsByName("arrPrint").innerHTML = JSON.stringify([cryptos])}
+            </script> */}
+
+            <button onClick={getWatchList}>Load WatchList</button>
 
             <form action="" onSubmit={(e) => handleSubmit(e)}>
                 <div className="row">

@@ -31,6 +31,7 @@
   height: 30px;
   width: 30px;
   margin-right: 10px;
+
 }
 
 .coin-symbol {
@@ -59,6 +60,7 @@
 
 .coin-percent {
   width: 80px;
+  margin-right: 10px;
 }
 
 .red {
@@ -71,10 +73,6 @@
 
 .coin-rank {
   display: flex;
-}
-
-.add {
-  font-size: 10px;
 }
 
 * {
@@ -126,6 +124,7 @@
 .watchlist {
   font-size: 42px;
   text-decoration: underline;
+  margin-left: 20px;
 }
 
 .img-fluid {
@@ -140,6 +139,7 @@
 .info {
   font-size: 42px;
   text-decoration: underline;
+  margin-left: 20px;
 }
 
 .btn-info {
@@ -148,10 +148,12 @@
 
 .name {
   font-size: 20px;
+  margin-left: 20px;
 }
 
 .email {
   font-size: 20px;
+  margin-left: 20px;
 }
 
 
@@ -162,3 +164,20 @@
   position: relative;
   text-decoration: underline;
 }
+
+.add {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  border-radius: 10%;
+  transition: all .2s ease-in-out;
+}
+
+.add:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.1);
+
+}
+
+

@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
                 const userRef = doc(db, 'users', user.uid)
                 // if that user doesn't exist, add them to the database,
                 // otherwise, if the user does exist, overwrite (don't duplicate) their information
-                setDoc(userRef, { email: user.email, name: user.displayName, displayName:user.displayName}, { merge: true })
+                setDoc(userRef, { email: user.email, name: user.displayName}, { merge: true })
 
                 setCurrentUser({
                     id: user.uid,

@@ -1,7 +1,7 @@
-import React, { createContext, useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthProvider'
-import { DataContext } from '../contexts/DataProvider'
+
 
 
 export const Navbar = () => {
@@ -18,13 +18,6 @@ const {signIn, logOut} = useAuth()
               <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                   <li className="nav-item active">
                       <Link className="nav-link" to="/">Home <span class="sr-only">(current)</span></Link>
-                  </li>
-                  <li className="nav-item dropdown">
-                      <a className="nav-link dropdown-toggle" to="." id="dropdownId" data-toggle="dropdown" aria-expanded="false">Messaging</a>
-                      <div className="dropdown-menu" aria-labelledby="dropdownId">
-                          <Link className="dropdown-item" to="/inbox">Inbox</Link>
-                          <Link className="dropdown-item" to="/sent">Sent</Link>
-                      </div>
                   </li>
               </ul>
               <ul className="navbar-nav ml auto">
