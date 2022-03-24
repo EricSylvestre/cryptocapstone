@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthProvider'
 
 
-
 export const Navbar = () => {
 
 const { currentUser} = useAuth()

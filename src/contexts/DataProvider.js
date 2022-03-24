@@ -1,6 +1,7 @@
 import { createContext, useState} from "react";
-import { getDoc, getFirestore, collection, addDoc} from "firebase/firestore"; 
+import { getDoc, getFirestore, collection, addDoc, deleteDoc, doc, query, getDocs} from "firebase/firestore"; 
 import { useAuth } from "./AuthProvider";
+import { firebaseApp } from "../firebase/config";
 
 export const DataContext = createContext()
 
@@ -13,20 +14,11 @@ export const DataProvider = (props) => {
 
     const db = getFirestore()
 
-
     const addCoin = async (formData) => {
         let collectionRef = await collection(db, `users/${currentUser.id}/watchlist`)
-
-        // once we try to add the new document to firebase, we can grab all of its information here
-        // await addDoc(collectionRef, formData)
         const docRef = await addDoc(collectionRef, formData)
-
-        // after we created a new document inside Firebase, we can then grab it using getDoc
         const newDoc = await getDoc(docRef)
-
-        // get access to the deeply nested document's current user and grab their data so we can use it to pass into our new posts list
         const userRef = await getDoc(docRef.parent.parent)
-
         setCoins([
             {
                 id: newDoc.id,
@@ -41,12 +33,23 @@ export const DataProvider = (props) => {
         ])
     }
 
+    const deleteCoin = async () => {
+        let q = query(collection(db, `users/${currentUser.id}/watchlist`))
 
-    
-    
+        const querySnapshot = await getDocs(q);
 
+        const deleteOps = [];
+
+        querySnapshot.forEach((doc) => {
+            deleteOps.push(deleteDoc(doc.ref));
+        });
+
+        Promise.all(deleteOps).then(() => console.log('Watchlist deleted'))
+
+    }
+   
     const values = {
-        coins, search, setSearch, addCoin
+        coins, search, setSearch, addCoin, deleteCoin
     }
 
     return (
