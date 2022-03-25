@@ -47,7 +47,7 @@ export const Watchlist = () => {
     
     return (
        
-     null
+     <div/>
     )
 }
 
