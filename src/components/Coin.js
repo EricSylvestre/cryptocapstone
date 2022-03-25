@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { useAuth } from '../contexts/AuthProvider'
 import { DataContext } from '../contexts/DataProvider'
 import { getFirestore} from 'firebase/firestore'
@@ -9,28 +9,17 @@ export const Coin = ({ name, image, symbol, price, volume, priceChange, marketca
     const { currentUser } = useAuth()
     const db = getFirestore()
     const { addCoin } = useContext(DataContext)
-    const { deleteCoin } = useContext(DataContext)
+    
     
 
     function addWatchlist (e) {
-        alert(e.name + ' has been added')
-
-        let formData = {
-            watchlist: e.name  
-        }
-        addCoin(formData)
-    }
-
-    function clearWatchlist(e) {
-        alert('Watchlist has been cleared!')
+        alert(e.name + ' has been added!')
 
         let formData = {
             watchlist: e.name
         }
-        deleteCoin(formData)
+        addCoin(formData)
     }
-
-    
 
         return (
 
@@ -56,7 +45,7 @@ export const Coin = ({ name, image, symbol, price, volume, priceChange, marketca
                             <p className='coin-marketcap'>
                                 Mkt Cap: ${marketcap.toLocaleString()}
                             </p>
-                            <button onClick={() => clearWatchlist({ name })} className='add'>Clear Watchlist</button>
+                            
                             {
                              currentUser.loggedIn
                                 ?
@@ -64,13 +53,11 @@ export const Coin = ({ name, image, symbol, price, volume, priceChange, marketca
                                     
                             : false
                             } 
+                              
                         </div>
                     </div>
-
-
+                    
                 </div>
-
-
 
             </React.Fragment>
         )

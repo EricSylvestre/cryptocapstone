@@ -38,7 +38,8 @@ export const Home = () => {
                 </div>
             </div>
 
-            <h1 className='top'>Top 250</h1>
+
+            <h1 className='top'>- Top 250 -</h1>
         <div>
                 {filteredCoins.map(coin => {
                     return <Coin
