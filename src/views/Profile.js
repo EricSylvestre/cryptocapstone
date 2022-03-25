@@ -63,7 +63,7 @@ export const Profile = () => {
 
             <p className='watchlist'>Watchlist</p>
             <div className='display' id='display'></div>
-            <Watchlist {...cryptos}/>
+            <Watchlist />
 
 
             {
