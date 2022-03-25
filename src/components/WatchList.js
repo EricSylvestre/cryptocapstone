@@ -31,7 +31,7 @@ export const Watchlist = () => {
                 for (var x=0; x<cryptos.length; x++ ){
                     var parent = document.getElementById('display')
                     var d = document.createElement('div')
-                    d.setAttribute('style','color:green; font-weight: 700 ')
+                    d.setAttribute('style','color:green; font-weight: 700; font-size: 28px ')
                     var tmp = document.createTextNode(cryptos[x])
                     d.appendChild(tmp)
                     parent.appendChild(d)

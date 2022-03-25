@@ -90,7 +90,7 @@
   margin-top: 64px;
   color: black;
   background-color: #f5f5f5;
-  background-image: linear-gradient(-90deg, #000000 0%, #929292 48%, #ffffff 100%);
+  background-image: linear-gradient(-90deg, #3A3A3A 0%, #929292 48%, #ffffff 100%);
   width: 100vw;
 
 
@@ -120,8 +120,10 @@
   height: 50px;
   border-radius: 4px;
   border: none;
-  background-image: linear-gradient(90deg, #000000 0%, #929292 48%, #ffffff 100%);
+  background-image: linear-gradient(90deg, #3A3A3A 0%, #929292 48%, #DDD 100%);
   color: white;
+  /* border: 1px solid white; */
+  box-shadow: 0px 0px 7px 1px white;
 }
 
 
@@ -177,11 +179,12 @@
 }
 
 .add {
-  background-color: black;
+  background-color: #3A3A3A;
   color: white;
   font-size: 10px;
   border-radius: 10%;
   transition: all .2s ease-in-out;
+  padding: 5px 3px;
 }
 
 .add:hover {
@@ -192,12 +195,15 @@
 }
 
 .clear {
-  background-color: black;
+  background-color: #3A3A3A;
   color: white;
-  font-size: 10px;
-  border-radius: 10%;
+  font-size: 21px;
+  border-radius: 4px;
   transition: all .2s ease-in-out;
   margin-left: 20px;
+  padding: 5px 12px;
+  margin-top: 12px;
+  
 }
 
 .clear:hover {
@@ -219,6 +225,6 @@
 
 }
 
-.display{
+.display {
   margin-left: 20px;
 }

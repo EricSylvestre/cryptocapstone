@@ -9,7 +9,6 @@ const { currentUser} = useAuth()
 const {signIn, logOut} = useAuth()
   return (
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
-          <a class="pull-left" ><img src="/images/CW.jpeg"/></a> 
           <Link className="navbar-brand" to="/">CryptoWorld</Link>
           <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
               aria-expanded="false" aria-label="Toggle navigation">

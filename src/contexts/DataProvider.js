@@ -43,6 +43,8 @@ export const DataProvider = (props) => {
         querySnapshot.forEach((doc) => {
             deleteOps.push(deleteDoc(doc.ref));
         });
+        //resets the watchlist to none
+        document.getElementById('display').style.display = 'none'
 
         Promise.all(deleteOps).then(() => console.log('Watchlist deleted'))
 
